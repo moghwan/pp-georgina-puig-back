@@ -14,7 +14,9 @@ router.get('/', async (req, res) => {
 });
 
 // NEW - show form to create new user
-
+router.get('/new', (req, res) => {
+  res.send('new user route');
+});
 
 // CREATE - add new user to db
 router.post('/', async (req, res) => {
