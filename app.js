@@ -2,8 +2,11 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 // import routes
 const authRoute = require('./routes/auth');
+const usersRoute = require('./routes/users');
+const { use } = require('./routes/auth');
 
 dotenv.config();
 
@@ -18,7 +21,9 @@ mongoose.connect(process.env.DB_CONNECT, {
 
 // middleware
 app.use(express.json());
+app.use(bodyParser.json());
 // route middlewares
 app.use('/api/user', authRoute);
+app.use('/api/users', usersRoute);
 
 app.listen(3300, () => console.log(`The server has started in port 3300 - http://localhost:3300/`));
