@@ -13,6 +13,26 @@ router.get('/', async (req, res) => {
   }
 });
 
+// INDEX - users by name
+router.get('/name/:name', async (req, res) => {
+  try {
+    const user = await User.find({ name: req.params.name });
+    res.json(user);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
+// INDEX - users by hobby
+router.get('/hobby/:hobby', async (req, res) => {
+  try {
+    const user = await User.find({ hobby: req.params.hobby });
+    res.json(user);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 // NEW - show form to create new user
 router.get('/new', (req, res) => {
   res.send('new user route');
@@ -41,5 +61,16 @@ router.post('/', async (req, res) => {
     res.json({ message: err });
   }
 });
+
+// DELETE
+router.delete('/:id', async (req, res) => {
+  try {
+    const removeUser = await User.remove({ _id: req.params.id });
+    res.json(removeUser);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 
 module.exports = router;
