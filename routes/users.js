@@ -33,6 +33,16 @@ router.get('/hobby/:hobby', async (req, res) => {
   }
 });
 
+// INDEX - users by name and hobby
+router.get('/name/:name/hobby/:hobby', async (req, res) => {
+  try {
+    const user = await User.find({ name: req.params.name, hobby: req.params.hobby });
+    res.json(user);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 // NEW - show form to create new user
 router.get('/new', (req, res) => {
   res.send('new user route');
