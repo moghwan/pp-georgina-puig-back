@@ -21,6 +21,7 @@ mongoose.connect(process.env.DB_CONNECT, {
   
 
 // middleware
+app.set('view engine', 'ejs');
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
